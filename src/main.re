@@ -5,6 +5,7 @@ module Constants = {
   let arbiter_endpoint = "https://arbiter:8080/store/secret";
   let arbiter_token_file = "/run/secrets/ARBITER_TOKEN";
   let store_key_file = "/run/secrets/ZMQ_PRIVATE_KEY";
+  let zest_binary = "/app/zest/server.exe"
 };
 
 let token_from_file () => {
@@ -27,10 +28,20 @@ let get_macaroon_secret arbiter_token => {
     fun (_, body) => body |> Cohttp_lwt_body.to_string
 };
 
+let exec cmd => {
+  Lwt_process.exec cmd >>=
+    fun _ => Lwt.return_unit;
+};
+
+let make_cmd macaroon_key curve_key => {
+  let binary = Constants.zest_binary;
+  (binary, [|binary, "--secret-key", curve_key, "--token-key", macaroon_key, "--enable-logging"|]);
+};
+
 let bootstrap with::token and::key => {
   get_macaroon_secret token >>=
     fun secret =>
-      Lwt_io.printf "macaroon-token:%s server-key:%s" secret key
+      exec (make_cmd secret key);
 };
 
 let report_error e => {
