@@ -5,7 +5,8 @@ module Constants = {
   let arbiter_endpoint = "https://arbiter:8080/store/secret";
   let arbiter_token_file = "/run/secrets/ARBITER_TOKEN";
   let store_key_file = "/run/secrets/ZMQ_SECRET_KEY";
-  let zest_binary = "/app/zest/server.exe"
+  let zest_binary = "/app/zest/server.exe";
+  let identity = Sys.getenv "DATABOX_LOCAL_NAME";
 };
 
 let token_from_file () => {
@@ -34,8 +35,9 @@ let exec cmd => {
 };
 
 let make_cmd macaroon_key curve_key => {
-  let binary = Constants.zest_binary;
-  (binary, [|binary, "--secret-key", curve_key, "--token-key", macaroon_key, "--enable-logging"|]);
+  open Constants;
+  let _ = Lwt_io.printf "Starting %s --secret-key %s --token-key %s --identity %s\n" zest_binary curve_key macaroon_key identity;
+  (zest_binary, [|zest_binary, "--secret-key", curve_key, "--token-key", macaroon_key, "--identity", identity, "--enable-logging"|]);
 };
 
 let bootstrap with::token and::key => {
