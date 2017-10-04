@@ -4,7 +4,7 @@ open Cohttp_lwt_unix;
 module Constants = {
   let arbiter_endpoint = "https://arbiter:8080/store/secret";
   let arbiter_token_file = "/run/secrets/ARBITER_TOKEN";
-  let store_key_file = "/run/secrets/ZMQ_PRIVATE_KEY";
+  let store_key_file = "/run/secrets/ZMQ_SECRET_KEY";
   let zest_binary = "/app/zest/server.exe"
 };
 

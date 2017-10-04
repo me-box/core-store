@@ -24,3 +24,7 @@ WORKDIR /app/zest/
 
 COPY --from=0 /home/opam/ .
 
+LABEL databox.type="store"
+
+ENTRYPOINT ["./main.exe"]
+#CMD ["sleep","99999"]
