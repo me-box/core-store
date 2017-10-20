@@ -8,7 +8,7 @@ RUN sudo chown -R opam:nogroup src
 ADD build.sh .
 
 # setup ocaml and compile main.exe
-RUN sudo apk add alpine-sdk m4 perl gmp-dev \
+RUN sudo apk update && sudo apk add alpine-sdk m4 perl gmp-dev \
 && opam install -y reason tls cohttp-lwt-unix bos \
 && sudo chmod +x build.sh && sync \
 && ./build.sh \
