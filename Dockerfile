@@ -9,7 +9,7 @@ ADD build.sh .
 
 # setup ocaml and compile main.exe
 RUN sudo apk update && sudo apk add alpine-sdk m4 perl gmp-dev \
-&& opam install -y reason tls cohttp-lwt-unix bos \
+&& opam install -y reason.1.13.7 tls cohttp-lwt-unix bos \
 && sudo chmod +x build.sh && sync \
 && ./build.sh \
 && rm -rf /home/opam/src \
