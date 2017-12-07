@@ -38,7 +38,7 @@ let exec cmd => {
 let make_cmd () => {
   open Constants;
   let _ = Lwt_io.printf "Starting %s --secret-key-file %s --token-key-file %s --identity %s --store-dir %s\n" zest_binary curve_key_file token_key_file identity store_dir;
-  (zest_binary, [|zest_binary, "--secret-key-file", curve_key_file, "--token-key-file", token_key_file, "--identity", identity, "--store-dir", store_dir, "--enable-logging"|]);
+  (zest_binary, [|zest_binary, "--secret-key-file", curve_key_file, "--token-key-file", token_key_file, "--identity", identity, "--store-dir", store_dir|]);
 };
 
 let bootstrap () => {
