@@ -8,7 +8,7 @@ module Constants = {
   let token_key_file = "/tmp/TOKEN_KEY";
   let zest_binary = "/app/zest/server.exe";
   let identity = Sys.getenv "DATABOX_LOCAL_NAME";
-  let store_dir = "/database";
+  let store_dir = "/database/";
 };
 
 let get_arbiter_token () => {
