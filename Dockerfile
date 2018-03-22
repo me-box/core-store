@@ -17,12 +17,17 @@ RUN sudo apk update && sudo apk add alpine-sdk m4 perl gmp-dev \
 && rm -rf /home/opam/opam-repository
 
 # move to leaner image with zest server
-FROM jptmoore/zest:shard
+FROM jptmoore/zest:v0.0.3
 
 USER root
 WORKDIR /app/zest/
 
 COPY --from=0 /home/opam/ .
+
+RUN sudo chown -R databox:nogroup /app/zest
+RUN sudo chown -R databox:nogroup /database
+
+USER databox
 
 LABEL databox.type="store"
 
