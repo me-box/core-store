@@ -24,8 +24,8 @@ WORKDIR /app/zest/
 
 COPY --from=0 /home/opam/ .
 
-RUN sudo chown -R databox:nogroup /app/zest
-RUN sudo chown -R databox:nogroup /database
+RUN /usr/bin/sudo /bin/chown -R databox:nogroup /app/zest
+RUN /usr/bin/sudo /bin/chown -R databox:nogroup /database
 
 USER databox
 
