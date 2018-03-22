@@ -19,15 +19,12 @@ RUN sudo apk update && sudo apk add alpine-sdk m4 perl gmp-dev \
 # move to leaner image with zest server
 FROM jptmoore/zest:v0.0.3
 
-COPY --from=0 /etc/passwd /etc/passwd
-
-USER opam
-
+USER root
 WORKDIR /app/zest/
 
-COPY --chown=opam:nogroup --from=0 /home/opam/ .
+COPY --from=0 /home/opam/ .
 
 LABEL databox.type="store"
 
-ENTRYPOINT ["./main.exe"]
-#CMD ["sleep","99999"]
+#ENTRYPOINT ["./main.exe"]
+CMD ["sleep","99999"]
