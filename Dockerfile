@@ -19,15 +19,13 @@ RUN sudo apk update && sudo apk add alpine-sdk m4 perl gmp-dev \
 # move to leaner image with zest server
 FROM jptmoore/zest:v0.0.3
 
-USER root
+COPY --from=0 /etc/passwd /etc/passwd
+
+USER opam
+
 WORKDIR /app/zest/
 
-COPY --from=0 /home/opam/ .
-
-RUN /usr/bin/sudo /bin/chown -R databox:nogroup /app/zest
-RUN /usr/bin/sudo /bin/chown -R databox:nogroup /database
-
-USER databox
+COPY --chown=opam:nogroup --from=0 /home/opam/ .
 
 LABEL databox.type="store"
 
