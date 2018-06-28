@@ -1,6 +1,0 @@
-(jbuild_version 1)
-
-(executables
- ((libraries (cohttp-lwt-unix bos))
- ;;((libraries (opium.unix bos))
-   (names (main))))
