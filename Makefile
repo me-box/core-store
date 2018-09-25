@@ -11,13 +11,13 @@ endef
 
 .PHONY: build-zest-amd64
 build-zest-amd64:
-	$(call gitPullorClone, https://github.com/toshbrown/zestdb.git,zestdb,master)
+	$(call gitPullorClone, https://github.com/me-box/zestdb.git,zestdb,master)
 	cd ./build/zestdb && docker build -t $(DEFAULT_REG)/zestdb-amd64:$(VERSION) -f Dockerfile .
 
 
 .PHONY: build-zest-arm64v8
 build-zest-arm64v8:
-	$(call gitPullorClone, https://github.com/toshbrown/zestdb.git,zestdb,master)
+	$(call gitPullorClone, https://github.com/me-box/zestdb.git,zestdb,master)
 	cd ./build/zestdb && docker build -t $(DEFAULT_REG)/zestdb-arm64v8:$(VERSION) -f Dockerfile-aarch64 .
 
 
