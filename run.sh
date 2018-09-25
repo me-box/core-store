@@ -35,4 +35,4 @@ echo -n $TOKEN > $TOKEN_KEY_FILE
 
 echo "Starting store"
 echo "${ZEST_SERVER_BINARY} --secret-key-file=${STORE_SECRET_KEY_FILE} --token-key-file=${TOKEN_KEY_FILE} --identity=${IDENTITY} --store-dir=${STORE_DIR}"
-${ZEST_SERVER_BINARY} --secret-key-file=${STORE_SECRET_KEY_FILE} --token-key-file=${TOKEN_KEY_FILE} --identity=${IDENTITY} --store-dir=${STORE_DIR} --enable-logging
+${ZEST_SERVER_BINARY} --secret-key-file=${STORE_SECRET_KEY_FILE} --token-key-file=${TOKEN_KEY_FILE} --identity=${IDENTITY} --store-dir=${STORE_DIR}
