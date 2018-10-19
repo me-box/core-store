@@ -2,9 +2,9 @@ ARG ZEST_FROM=test
 FROM ${ZEST_FROM}
 
 USER root
-COPY /run.sh /run.sh
 WORKDIR /app/zest/
+COPY run.sh /app/zest/run.sh
 
 LABEL databox.type="store"
 
-ENTRYPOINT ["/run.sh"]
+CMD ["/app/zest/run.sh"]
